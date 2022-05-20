@@ -24,4 +24,13 @@ export class AppComponent {
     });
   }
 
+  onChangeFirst(){
+    console.log("Change first clicked");
+    this.serverElements[0].name="Changed";
+  }
+  onDeleteFirst(){
+    console.log("onDeleteFirst called");
+    this.serverElements.splice(0,1);
+    console.log(this.serverElements)
+  }
 }
