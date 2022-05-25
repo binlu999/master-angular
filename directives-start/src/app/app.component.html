@@ -24,6 +24,15 @@
           >{{ even }}
         </li>
         </div>
+        <div *appUnless="onlyOdd">
+          <li
+          class="list-group-item"
+          *ngFor="let even of evens"
+          [ngClass]="{oddc:even%2!==0}"
+          [ngStyle]="{backgroundColor: even%2 !==0 ? 'yellow':'transparent'}"
+          >{{ even }}
+        </li>
+        </div>
         <ng-template [ngIf]="!onlyOdd">
           <div>
             <li
@@ -44,5 +53,11 @@
       </ng-template>
     </div>
 
+    <div [ngSwitch]="value">
+      <p *ngSwitchCase="5">Value is 5</p>
+      <p *ngSwitchCase="10">Value is 10</p>
+      <p *ngSwitchDefault>Defaul value</p>
+
+    </div>
   </div>
 </div>
