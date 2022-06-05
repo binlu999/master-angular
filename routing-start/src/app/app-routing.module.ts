@@ -1,3 +1,5 @@
+import { ServerResolverService } from './servers/server/server-resolver.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "./auth-gurad.service";
@@ -20,18 +22,20 @@ const appRoutes: Routes = [
         component:EditServerComponent,
         canDeactivate:[CanDeactivateGuard]
       },
-      { path: ':id',component:ServerComponent}
+      { path: ':id',component:ServerComponent, resolve:{'server':ServerResolverService}}
     ] },
     { path: 'users', component: UsersComponent, children:[
       { path: ':id/:name', component: UserComponent }
     ]},
-    {path: 'not-found', component:PageNotFoundComponent},
-    {path: '**', redirectTo:'not-found'}
+    //{path: 'not-found', component:PageNotFoundComponent},
+    {path: 'error-page',component:ErrorPageComponent,data:{message:"Page not found error"}},
+    {path: '**', redirectTo:'error-page'}
   ];
   
 @NgModule({
 imports:[
     RouterModule.forRoot(appRoutes)
+    //RouterModule.forRoot(appRoutes,{useHash:true})
 ],
 exports:[RouterModule]
 })
