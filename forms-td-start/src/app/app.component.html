@@ -63,8 +63,18 @@
         </div>
       </div>
       <p *ngIf="!userDataGroup.valid && userDataGroup.touched" >User input is invalid</p>
-        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid" (click)="onSubmit()">Submit</button>
       </form>
+    </div>
+  </div>
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your data</h3>
+      <p>User name: {{ userData.username }}</p>
+      <p>Nail: {{ userData.email }}</p>
+      <p>Secret Question: {{ userData.secret }} </p>
+      <p>Answer: {{ userData.questionAnswer }}</p>
+      <p>Gender: {{ userData.gender }}</p>
     </div>
   </div>
 </div>
